@@ -259,7 +259,7 @@ router.post('/companyemp/forgot',(req,res) => {
             service: 'gmail',
             auth: {
               user: 'hadihusain112@gmail.com',
-              pass: 'kenxinda12345'
+              pass: '******'
             }
           });
           var mailOptions = {
@@ -312,7 +312,7 @@ router.post('/companyemp/reset/:token',(req,res) =>{
             service: 'gmail',
             auth: {
               user: 'hadihusain112@gmail.com',
-              pass: 'kenxinda12345'
+              pass: '*******'
             }
           });
           var mailOptions = {
