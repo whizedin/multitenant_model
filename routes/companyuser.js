@@ -8,10 +8,11 @@ const CompanyUserController = require('../controller/ComapnyUserController');
 const jwtDecode = require('jwt-decode');
 const CompanyUserCreation = require('../models/CompanyUserCreation');
 const CompanyUserCreationController = require('../controller/CompanyUserCreationController');
-const password11 = require('../generatePassword');
+//const password11 = require('../generatePassword');
 const async = require('async');
 const crypto = require('crypto')
 const nodemailer = require('nodemailer');
+const generator = require('generate-password');
 
 //console.log(password11);
 //console.log(CompanyUserCreationController);
@@ -154,12 +155,17 @@ router.route('/:id1/user/:id2')
 
 router.route('/:id/user/create',[checkRole,passport.authenticate('jwt',{session:false})])
       .post((req,res) => {
+        console.log(password11);
+        var password11 = generator.generate({
+          length: 10,
+          numbers: true
+      });
     let newComanyUserCreation = new CompanyUserCreation({
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
         contact: req.body.contact,
-        password: password11,
+        password:password11,
         job_profile: req.body.job_profil,
         companyId:req.body.companyId,
         role:'2'
@@ -286,6 +292,7 @@ router.post('/companyemp/forgot',(req,res) => {
 });
 
 router.post('/companyemp/reset/:token',(req,res) =>{
+  
 
     console.log('working not going further');
     async.waterfall([
